@@ -87,6 +87,7 @@ class ParseCommand extends AbstractConfigCommand implements ContainerAwareInterf
         $parsed = $this->parser->parseUrl($argument);
 
         if ($hostOnly) {
+            // uses magic getter
             return $parsed->host;
         }
 
