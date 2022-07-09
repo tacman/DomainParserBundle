@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraint;
  *
  * @Annotation
  */
-class IsSuffixValid extends Constraint
+class IsSuffixValid extends Constraint implements \Stringable
 {
     /**
      * Constraint message.
@@ -26,5 +26,10 @@ class IsSuffixValid extends Constraint
     public function validatedBy()
     {
         return 'is_suffix_valid';
+    }
+
+    public function __toString()
+    {
+        return $this->message;
     }
 }

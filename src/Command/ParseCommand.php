@@ -2,25 +2,31 @@
 
 namespace EmanueleMinotto\DomainParserBundle\Command;
 
+use Pdp\Parser;
+use Symfony\Bundle\FrameworkBundle\Command\AbstractConfigCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
- * Parses an URL or a host.
+ * Parses a URL or a host.
  *
  * @author Emanuele Minotto <minottoemanuele@gmail.com>
  */
-class ParseCommand extends ContainerAwareCommand
+class ParseCommand extends AbstractConfigCommand implements ContainerAwareInterface
 {
-    /**
-     * Pdp Parser.
-     *
-     * @var \Pdp\Parser
-     */
-    private $parser;
+    use ContainerAwareTrait;
+    private Parser $parser;
+//    public function __construct(Parser $parser, string $name = null)
+//    {
+//        $this->parser = $parser;
+//        parent::__construct($name);
+//    }
+
 
     /**
      * {@inheritdoc}
@@ -46,8 +52,8 @@ class ParseCommand extends ContainerAwareCommand
         InputInterface $input,
         OutputInterface $output
     ) {
-        $container = $this->getContainer();
-        $this->parser = $container->get('pdp.parser');
+        $this->parser = $this->container->get('pdp.parser');
+//        $container = $this->getContainer();
     }
 
     /**

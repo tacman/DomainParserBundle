@@ -43,10 +43,14 @@ class IsSuffixValidValidator extends ConstraintValidator
         }
 
         $suffix = $this->parser->getPublicSuffix($value) ?: $value;
+        dump($suffix, $constraint, $constraint->message);
 
-        $this->context
-            ->buildViolation($constraint->message)
-            ->setParameter('%suffix%', $suffix)
+        $x = $this->context
+            ->buildViolation($constraint->message, ['%suffix%' => $suffix])
+//            ->setParameter('%suffix%', $suffix)
+        ;
+        dump($x, get_class($x));
+        $x
             ->addViolation();
     }
 }

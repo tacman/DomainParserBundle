@@ -9,6 +9,8 @@
         <parameter key="pdp.public_suffix_list_manager.class">Pdp\PublicSuffixListManager</parameter>
     </parameters>
     <services>
+
+
         <service class="%domain_parser.cached_domains_list_warmer.class%" id="domain_parser.cached_domains_list_warmer" public="false">
             <argument>null</argument>
             <tag name="kernel.cache_warmer"/>
