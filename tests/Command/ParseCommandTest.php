@@ -4,7 +4,7 @@ namespace EmanueleMinotto\DomainParserBundle\Command;
 
 use Pdp\Parser;
 use Pdp\PublicSuffixListManager;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,17 +12,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @covers EmanueleMinotto\DomainParserBundle\Command\ParseCommand
  */
-class ParseCommandTest extends PHPUnit_Framework_TestCase
+class ParseCommandTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var ParseCommand
-     */
-    private $command;
+    private ?\EmanueleMinotto\DomainParserBundle\Command\ParseCommand $command = null;
 
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    private ?\Symfony\Component\Console\Tester\CommandTester $commandTester = null;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -80,14 +74,11 @@ class ParseCommandTest extends PHPUnit_Framework_TestCase
             'url' => 'http://www.example.com/',
         ]);
 
-        $this->assertSame(
-            "Parsed: http://www.example.com/\n"
-            ." scheme: http\n user: \n pass: \n host: www.example.com\n"
-            ." subdomain: www\n registerableDomain: example.com\n"
-            ." publicSuffix: com\n port: \n path: /\n query: \n"
-            ." fragment: \n",
-            $this->commandTester->getDisplay()
-        );
+        static::assertSame("Parsed: http://www.example.com/\n"
+        ." scheme: http\n user: \n pass: \n host: www.example.com\n"
+        ." subdomain: www\n registerableDomain: example.com\n"
+        ." publicSuffix: com\n port: \n path: /\n query: \n"
+        ." fragment: \n", $this->commandTester->getDisplay());
     }
 
     /**
@@ -101,11 +92,8 @@ class ParseCommandTest extends PHPUnit_Framework_TestCase
             '--host-only' => true,
         ]);
 
-        $this->assertSame(
-            "Parsed: www.example.com\n"
-            ." subdomain: www\n registerableDomain: example.com\n"
-            ." publicSuffix: com\n host: www.example.com\n",
-            $this->commandTester->getDisplay()
-        );
+        static::assertSame("Parsed: www.example.com\n"
+        ." subdomain: www\n registerableDomain: example.com\n"
+        ." publicSuffix: com\n host: www.example.com\n", $this->commandTester->getDisplay());
     }
 }

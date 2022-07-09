@@ -4,13 +4,13 @@ namespace EmanueleMinotto\DomainParserBundle\CacheWarmer;
 
 use org\bovigo\vfs\vfsStream;
 use Pdp\HttpAdapter\HttpAdapterInterface;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use ReflectionProperty;
 
 /**
  * @covers EmanueleMinotto\DomainParserBundle\CacheWarmer\CachedDomainsListWarmer
  */
-class CachedDomainsListWarmerTest extends PHPUnit_Framework_TestCase
+class CachedDomainsListWarmerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * Test if it's optional.
@@ -18,7 +18,7 @@ class CachedDomainsListWarmerTest extends PHPUnit_Framework_TestCase
     public function testIsOptional()
     {
         $warmer = new CachedDomainsListWarmer();
-        $this->assertTrue($warmer->isOptional());
+        static::assertTrue($warmer->isOptional());
     }
 
     /**
@@ -31,8 +31,8 @@ class CachedDomainsListWarmerTest extends PHPUnit_Framework_TestCase
         $warmer = new CachedDomainsListWarmer();
         $warmer->warmUp($fileSystem->url());
 
-        $this->assertTrue($fileSystem->hasChild('public-suffix-list.txt'));
-        $this->assertTrue($fileSystem->hasChild('public-suffix-list.php'));
+        static::assertTrue($fileSystem->hasChild('public-suffix-list.txt'));
+        static::assertTrue($fileSystem->hasChild('public-suffix-list.php'));
     }
 
     /**
@@ -51,6 +51,6 @@ class CachedDomainsListWarmerTest extends PHPUnit_Framework_TestCase
         $property = new ReflectionProperty($warmer, 'httpAdapter');
         $property->setAccessible(true);
 
-        $this->assertSame($httpAdapter, $property->getValue($warmer));
+        static::assertSame($httpAdapter, $property->getValue($warmer));
     }
 }

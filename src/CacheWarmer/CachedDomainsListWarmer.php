@@ -15,10 +15,8 @@ class CachedDomainsListWarmer extends CacheWarmer
 {
     /**
      * Pdp Public Suffix List Manager HTTP adapter.
-     *
-     * @var HttpAdapterInterface|null
      */
-    private $httpAdapter;
+    private ?\Pdp\HttpAdapter\HttpAdapterInterface $httpAdapter;
 
     /**
      * Cache warmer constructor with optional dependency.

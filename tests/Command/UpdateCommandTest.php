@@ -4,7 +4,7 @@ namespace EmanueleMinotto\DomainParserBundle\Command;
 
 use Pdp\Parser;
 use Pdp\PublicSuffixListManager;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Tester\CommandTester;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -12,17 +12,11 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * @covers EmanueleMinotto\DomainParserBundle\Command\UpdateCommand
  */
-class UpdateCommandTest extends PHPUnit_Framework_TestCase
+class UpdateCommandTest extends \PHPUnit\Framework\TestCase
 {
-    /**
-     * @var UpdateCommand
-     */
-    private $command;
+    private ?\EmanueleMinotto\DomainParserBundle\Command\UpdateCommand $command = null;
 
-    /**
-     * @var CommandTester
-     */
-    private $commandTester;
+    private ?\Symfony\Component\Console\Tester\CommandTester $commandTester = null;
 
     /**
      * Sets up the fixture, for example, opens a network connection.
@@ -77,9 +71,6 @@ class UpdateCommandTest extends PHPUnit_Framework_TestCase
             'command' => $this->command->getName(),
         ]);
 
-        $this->assertSame(
-            "Updating public suffix list... done\n",
-            $this->commandTester->getDisplay()
-        );
+        static::assertSame("Updating public suffix list... done\n", $this->commandTester->getDisplay());
     }
 }

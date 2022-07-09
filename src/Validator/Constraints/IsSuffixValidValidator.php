@@ -15,10 +15,8 @@ class IsSuffixValidValidator extends ConstraintValidator
 {
     /**
      * Pdp Parser.
-     *
-     * @var Parser
      */
-    private $parser;
+    private \Pdp\Parser $parser;
 
     /**
      * Contructor used for the parser dependency.

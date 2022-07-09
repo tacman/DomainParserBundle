@@ -30,10 +30,7 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
      */
     public function testConfigurationFormats()
     {
-        $expectedConfiguration = array(
-            'cache_dir' => '%kernel.cache_dir%/domain_parser',
-            'http_adapter' => 'test',
-        );
+        $expectedConfiguration = ['cache_dir' => '%kernel.cache_dir%/domain_parser', 'http_adapter' => 'test'];
 
         $sources = [
             __DIR__.'/Fixtures/config.yml',
