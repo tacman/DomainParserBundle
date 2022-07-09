@@ -53,7 +53,7 @@ class ParseCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $parsed = $this->parse(
             $input->getArgument('url'),
@@ -64,6 +64,8 @@ class ParseCommand extends ContainerAwareCommand
         foreach ($parsed->toArray() as $key => $val) {
             $output->writeln(sprintf(' <comment>%s</comment>: %s', $key, $val));
         }
+
+        return self::SUCCESS;
     }
 
     /**

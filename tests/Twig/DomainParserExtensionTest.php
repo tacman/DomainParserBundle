@@ -4,7 +4,7 @@ namespace EmanueleMinotto\DomainParserBundle\Twig;
 
 use Pdp\Parser;
 use Pdp\PublicSuffixListManager;
-use Twig_Test_IntegrationTestCase;
+use Twig\Test\IntegrationTestCase;
 
 /**
  * Functional tests for Twig extension.
@@ -13,7 +13,7 @@ use Twig_Test_IntegrationTestCase;
  *
  * @covers EmanueleMinotto\DomainParserBundle\Twig\DomainParserExtension
  */
-class DomainParserExtensionTest extends Twig_Test_IntegrationTestCase
+class DomainParserExtensionTest extends IntegrationTestCase
 {
     /**
      * {@inheritdoc}
@@ -35,4 +35,5 @@ class DomainParserExtensionTest extends Twig_Test_IntegrationTestCase
     {
         return __DIR__.'/Fixtures/';
     }
+
 }

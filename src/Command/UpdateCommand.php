@@ -26,7 +26,7 @@ class UpdateCommand extends ContainerAwareCommand
     /**
      * {@inheritdoc}
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $container = $this->getContainer();
         $manager = $container->get('pdp.public_suffix_list_manager');
@@ -36,5 +36,7 @@ class UpdateCommand extends ContainerAwareCommand
         $manager->refreshPublicSuffixList();
 
         $output->writeln('<info>done</info>');
+
+        return self::SUCCESS;
     }
 }

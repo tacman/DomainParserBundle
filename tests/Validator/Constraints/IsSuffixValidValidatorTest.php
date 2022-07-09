@@ -4,11 +4,12 @@ namespace EmanueleMinotto\DomainParserBundle\Validator\Constraints;
 
 use Pdp\Parser;
 use Pdp\PublicSuffixListManager;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Component\Translation\Translator;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Context\ExecutionContext;
-use Symfony\Component\Validator\Tests\Constraints\AbstractConstraintValidatorTest;
 use Symfony\Component\Validator\Validator\ContextualValidatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Validator\Test\ConstraintValidatorTestCase;
 
 /**
  * @author Emanuele Minotto <minottoemanuele@gmail.com>
@@ -16,11 +17,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
  * @covers EmanueleMinotto\DomainParserBundle\Validator\Constraints\IsSuffixValid
  * @covers EmanueleMinotto\DomainParserBundle\Validator\Constraints\IsSuffixValidValidator
  */
-class IsSuffixValidValidatorTest extends AbstractConstraintValidatorTest
+class IsSuffixValidValidatorTest extends ConstraintValidatorTestCase
 {
     protected function createContext()
     {
-        $translator = $this->createMock(TranslatorInterface::class);
+        $translator = $this->createMock(Translator::class);
         $validator = $this->createMock(ValidatorInterface::class);
         $contextualValidator = $this->createMock(ContextualValidatorInterface::class);
 

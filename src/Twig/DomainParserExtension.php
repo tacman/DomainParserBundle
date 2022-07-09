@@ -3,11 +3,11 @@
 namespace EmanueleMinotto\DomainParserBundle\Twig;
 
 use Pdp\Parser;
-use Twig_Extension;
-use Twig_SimpleFunction;
-use Twig_SimpleTest;
+use Twig\Extension;
+use Twig\TwigFunction;
+use Twig\TwigTest;
 
-class DomainParserExtension extends Twig_Extension
+class DomainParserExtension extends Extension\AbstractExtension
 {
     /**
      * Pdp Parser.
@@ -30,10 +30,10 @@ class DomainParserExtension extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new Twig_SimpleFunction('parse_url', fn($url) => $this->parser
+            new TwigFunction('parse_url', fn($url) => $this->parser
                 ->parseUrl($url)
                 ->toArray()),
-            new Twig_SimpleFunction('parse_host', fn($host) => $this->parser
+            new TwigFunction('parse_host', fn($host) => $this->parser
                 ->parseHost($host)
                 ->toArray()),
         ];
@@ -45,7 +45,7 @@ class DomainParserExtension extends Twig_Extension
     public function getTests()
     {
         return [
-            new Twig_SimpleTest(
+            new TwigTest(
                 'valid suffix',
                 [$this->parser, 'isSuffixValid']
             ),
