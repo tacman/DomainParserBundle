@@ -2,7 +2,8 @@
 
 namespace EmanueleMinotto\DomainParserBundle\Command;
 
-use Pdp\Parser;
+use Pdp\Domain;
+use Pdp\Rules;
 use Symfony\Bundle\FrameworkBundle\Command\AbstractConfigCommand;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -20,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 class ParseCommand extends AbstractConfigCommand implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
-    private Parser $parser;
+//    private Parser $parser;
 //    public function __construct(Parser $parser, string $name = null)
 //    {
 //        $this->parser = $parser;

@@ -4,8 +4,10 @@
         <parameter key="domain_parser.cached_domains_list_warmer.class">EmanueleMinotto\DomainParserBundle\CacheWarmer\CachedDomainsListWarmer</parameter>
         <parameter key="domain_parser.twig.domain_parser_extension.class">EmanueleMinotto\DomainParserBundle\Twig\DomainParserExtension</parameter>
         <parameter key="domain_parser.validator.constraints.is_suffix_valid.class">EmanueleMinotto\DomainParserBundle\Validator\Constraints\IsSuffixValidValidator</parameter>
-        <parameter key="pdp.parser.class">Pdp\Parser</parameter>
+        <parameter key="pdp.domain.class">Pdp\Domain</parameter>
+        <parameter key="pdp.rules.class">Pdp\Rules</parameter>
         <parameter key="domain_parser.command.class">EmanueleMinotto\DomainParserBundle\Command\ParseCommand</parameter>
+        <parameter key="domain_parser.update_command.class">EmanueleMinotto\DomainParserBundle\Command\UpdateCommand</parameter>
         <parameter key="pdp.public_suffix_list.class">Pdp\PublicSuffixList</parameter>
         <parameter key="pdp.public_suffix_list_manager.class">Pdp\PublicSuffixListManager</parameter>
     </parameters>
@@ -14,21 +16,24 @@
         <service class="%domain_parser.command.class%" id="domain_parser.command.class" public="false">
             <tag name="console.command" />
         </service>
-        <service alias="domain_parser.command.class" id="%domain_parser.command.class%" public="true">
+        <service alias="domain_parser.command.class" id="%domain_parser.command.class%" public="true" />
 
+        <service class="%domain_parser.update_command.class%" id="domain_parser.update_command.class" public="false">
+            <tag name="console.command" />
         </service>
+        <service alias="domain_parser.update_command.class" id="%domain_parser.update_command.class%" public="true" />
 
         <service class="%domain_parser.cached_domains_list_warmer.class%" id="domain_parser.cached_domains_list_warmer" public="false">
             <argument>null</argument>
             <tag name="kernel.cache_warmer"/>
         </service>
-        <service class="%pdp.public_suffix_list_manager.class%" id="pdp.public_suffix_list_manager">
+        <service class="%pdp.public_suffix_list_manager.class%" id="pdp.public_suffix_list_manager" public="true">
             <argument>null</argument>
         </service>
         <service class="%pdp.public_suffix_list.class%" id="pdp.public_suffix_list" public="false">
             <factory method="getList" service="pdp.public_suffix_list_manager"/>
         </service>
-        <service class="%pdp.parser.class%" id="pdp.parser" public="true">
+        <service class="%pdp.rules.class%" id="pdp.parser" public="true">
             <argument id="pdp.public_suffix_list" type="service"/>
         </service>
         <service class="%domain_parser.twig.domain_parser_extension.class%" id="domain_parser.twig.domain_parser_extension" public="false">

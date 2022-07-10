@@ -34,7 +34,7 @@
     "name": "emanueleminotto/domain-parser-bundle",
     "require": {
         "php": ">= 7.4",
-        "jeremykendall/php-domain-parser": "^3.0",
+        "jeremykendall/php-domain-parser": "^5.7",
         "matthiasnoback/symfony-dependency-injection-test": "^4.3",
         "symfony/console": ">=5.4",
         "symfony/framework-bundle": ">= 5.4"
